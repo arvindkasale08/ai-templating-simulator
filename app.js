@@ -6,6 +6,9 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var invoicesRouter = require('./routes/invoices');
+var paymentsRouter = require('./routes/payments');
+var expensesRouter = require('./routes/expenses');
 var aiTemplateRouter = require('./routes/aitemplate');
 const port = 7777;
 
@@ -23,6 +26,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/invoices', invoicesRouter);
+app.use('/payments', paymentsRouter);
+app.use('/expenses', expensesRouter);
 app.use('/api/integration/v1/visualization', aiTemplateRouter);
 
 // catch 404 and forward to error handler
