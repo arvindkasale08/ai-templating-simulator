@@ -21,6 +21,8 @@ router.get('/', function(req, res, next) {
       }
       payments.push(payment);
     }
+  } else {
+    offset = null;
   }
   let response = {
     payments,

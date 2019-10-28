@@ -22,6 +22,8 @@ router.get('/', function(req, res, next) {
       }
       invoices.push(invoice);
     }
+  } else {
+    offset = null;
   }
   let response = {
     invoices,

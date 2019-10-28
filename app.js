@@ -9,6 +9,7 @@ var usersRouter = require('./routes/users');
 var invoicesRouter = require('./routes/invoices');
 var paymentsRouter = require('./routes/payments');
 var expensesRouter = require('./routes/expenses');
+var eventsRouter = require('./routes/events');
 var aiTemplateRouter = require('./routes/aitemplate');
 const port = 7777;
 
@@ -29,6 +30,7 @@ app.use('/users', usersRouter);
 app.use('/invoices', invoicesRouter);
 app.use('/payments', paymentsRouter);
 app.use('/expenses', expensesRouter);
+app.use('/events', eventsRouter);
 app.use('/api/integration/v1/visualization', aiTemplateRouter);
 
 // catch 404 and forward to error handler
