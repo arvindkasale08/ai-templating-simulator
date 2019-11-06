@@ -11,6 +11,7 @@ var paymentsRouter = require('./routes/payments');
 var expensesRouter = require('./routes/expenses');
 var eventsRouter = require('./routes/events');
 var aiTemplateRouter = require('./routes/aitemplate');
+var awRouter = require('./routes/awrouter');
 const port = 7777;
 
 var app = express();
@@ -32,6 +33,7 @@ app.use('/payments', paymentsRouter);
 app.use('/expenses', expensesRouter);
 app.use('/events', eventsRouter);
 app.use('/api/integration/v1/visualization', aiTemplateRouter);
+app.use('/api/integration/v1/content', awRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

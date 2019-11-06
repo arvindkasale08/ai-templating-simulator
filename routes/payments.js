@@ -1,14 +1,15 @@
 var express = require('express');
 var router = express.Router();
+var con = 1;
 
 // Get all payments, paginated max upto 10 pages 50 payments per page
 router.get('/', function(req, res, next) {
   let payments = [];
   let offset = parseInt(req.query.offset);
   console.log(offset);
-  let pageSize = 50;
-  let start = offset * 50;
-  let end = start + 50;
+  let pageSize = 2;
+  let start = offset * pageSize;
+  let end = start + pageSize;
   if (offset < 10) {
     offset += 1;
     for (let i = start; i < end; i++) {

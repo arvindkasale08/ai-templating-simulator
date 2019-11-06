@@ -1,14 +1,16 @@
 var express = require('express');
 var router = express.Router();
+var con = 1;
 
 // Get all invoices, paginated max upto 10 pages 50 invoices per page
 router.get('/', function(req, res, next) {
+  console.log("Conn is", con);
   let invoices = [];
   let offset = parseInt(req.query.offset);
   console.log(offset);
-  let pageSize = 50;
-  let start = offset * 50;
-  let end = start + 50;
+  let pageSize = 2;
+  let start = offset * pageSize;
+  let end = start + pageSize;
   if (offset < 10) {
     offset += 1;
     for (let i = start; i < end; i++) {
@@ -20,6 +22,8 @@ router.get('/', function(req, res, next) {
         expenseId: (i+1),
         user: ("User-"+i)
       }
+
+
       invoices.push(invoice);
     }
   } else {
@@ -29,7 +33,11 @@ router.get('/', function(req, res, next) {
     invoices,
     offset
   };
-  res.json(response);
+  if (con == 1) {
+    res.status(401);
+  }
+  con ++;
+  res.send(response);
 });
 
 router.get('/:id', function(req, res, next) {

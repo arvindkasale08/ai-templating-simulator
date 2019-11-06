@@ -6,9 +6,9 @@ router.get('/', function(req, res, next) {
   let expenses = [];
   let offset = parseInt(req.query.offset);
   console.log(offset);
-  let pageSize = 50;
-  let start = offset * 50;
-  let end = start + 50;
+  let pageSize = 2;
+  let start = offset * pageSize;
+  let end = start + pageSize;
   if (offset < 10) {
     offset += 1;
     for (let i = start; i < end; i++) {
