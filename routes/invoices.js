@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
   let invoices = [];
   let offset = parseInt(req.query.offset);
   console.log(offset);
-  let pageSize = 2;
+  let pageSize = 250;
   let start = offset * pageSize;
   let end = start + pageSize;
   if (offset < 10) {
@@ -22,8 +22,6 @@ router.get('/', function(req, res, next) {
         expenseId: (i+1),
         user: ("User-"+i)
       }
-
-
       invoices.push(invoice);
     }
   } else {
@@ -34,10 +32,13 @@ router.get('/', function(req, res, next) {
     offset
   };
   if (con == 1) {
-    res.status(401);
+    //res.status(401);
   }
   con ++;
-  res.send(response);
+
+  setTimeout(() => res.send(response), 400);
+
+  //res.send(response);
 });
 
 router.get('/:id', function(req, res, next) {
@@ -49,7 +50,8 @@ router.get('/:id', function(req, res, next) {
     paymentId: (id),
     user: ("User-"+id)
   };
-  res.json(invoice);
+
+  setTimeout(() => res.json(invoice), 400);
 });
 
 module.exports = router;

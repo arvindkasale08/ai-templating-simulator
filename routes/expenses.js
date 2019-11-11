@@ -6,7 +6,7 @@ router.get('/', function(req, res, next) {
   let expenses = [];
   let offset = parseInt(req.query.offset);
   console.log(offset);
-  let pageSize = 2;
+  let pageSize = 50;
   let start = offset * pageSize;
   let end = start + pageSize;
   if (offset < 10) {
@@ -40,7 +40,7 @@ router.get('/:id', function(req, res, next) {
     invoiceId: (id),
     user: ("User-"+id)
   };
-  res.json(expense);
+  setTimeout(() => res.json(expense), 400);
 });
 
 module.exports = router;
