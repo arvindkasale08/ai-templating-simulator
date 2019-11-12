@@ -40,7 +40,7 @@ router.get('/:id', function(req, res, next) {
     invoiceId: (id),
     user: ("User-"+id)
   };
-  setTimeout(() => res.json(expense), 400);
+  setTimeout(() => res.json(expense), 300);
 });
 
 module.exports = router;

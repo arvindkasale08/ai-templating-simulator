@@ -32,11 +32,11 @@ router.get('/', function(req, res, next) {
     offset
   };
   if (con == 1) {
-    //res.status(401);
+    res.status(429);
   }
   con ++;
 
-  setTimeout(() => res.send(response), 400);
+  setTimeout(() => res.send(response), 1200);
 
   //res.send(response);
 });
@@ -51,7 +51,7 @@ router.get('/:id', function(req, res, next) {
     user: ("User-"+id)
   };
 
-  setTimeout(() => res.json(invoice), 400);
+  setTimeout(() => res.json(invoice), 300);
 });
 
 module.exports = router;

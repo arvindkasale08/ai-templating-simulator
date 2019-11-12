@@ -41,7 +41,7 @@ router.get('/:id', function(req, res, next) {
     invoiceId: (id),
     user: ("User-"+id)
   };
-  setTimeout(() => res.json(payment), 400);
+  setTimeout(() => res.json(payment), 300);
 });
 
 module.exports = router;
