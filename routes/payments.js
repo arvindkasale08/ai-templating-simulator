@@ -7,10 +7,10 @@ router.get('/', function(req, res, next) {
   let payments = [];
   let offset = parseInt(req.query.offset);
   console.log(offset);
-  let pageSize = 50;
+  let pageSize = 1;
   let start = offset * pageSize;
   let end = start + pageSize;
-  if (offset < 10) {
+  if (offset < 10000000) {
     offset += 1;
     for (let i = start; i < end; i++) {
       let payment = {
@@ -41,7 +41,13 @@ router.get('/:id', function(req, res, next) {
     invoiceId: (id),
     user: ("User-"+id)
   };
-  setTimeout(() => res.json(payment), 300);
+  if (con % 5 > 3) {
+    //res.status(500);
+  }
+  con ++;
+
+  //setTimeout(() => res.json(payment), 1);
+  res.json(payment);
 });
 
 module.exports = router;

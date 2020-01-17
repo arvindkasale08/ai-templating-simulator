@@ -8,10 +8,10 @@ router.get('/', function(req, res, next) {
   let invoices = [];
   let offset = parseInt(req.query.offset);
   console.log(offset);
-  let pageSize = 250;
+  let pageSize = 2;
   let start = offset * pageSize;
   let end = start + pageSize;
-  if (offset < 10) {
+  if (offset < 1000000000) {
     offset += 1;
     for (let i = start; i < end; i++) {
       let invoice = {
@@ -20,7 +20,9 @@ router.get('/', function(req, res, next) {
         amount: Math.random() * 10 * (i + 1),
         paymentId: (i+1),
         expenseId: (i+1),
-        user: ("User-"+i)
+        user: ("User-"+i),
+        compulsoryField: "123",
+        rows: 20
       }
       invoices.push(invoice);
     }
@@ -31,13 +33,17 @@ router.get('/', function(req, res, next) {
     invoices,
     offset
   };
-  if (con == 1) {
-    res.status(429);
-  }
   con ++;
 
-  setTimeout(() => res.send(response), 1200);
+  setTimeout(() => res.send(response), 750);
+  // Very bad request
+  //res.status(400);
+  //res.send("{'code': 'Too many Request'}");
+  // Unauthorized
 
+  // Internal Server error
+
+  // Ratelimit
   //res.send(response);
 });
 
@@ -48,10 +54,17 @@ router.get('/:id', function(req, res, next) {
     status: (id%4 == 0 || id % 3 == 0 ) ? "PAID" : "UNPAID",
     amount: Math.random() * 10 * (id + 1),
     paymentId: (id),
-    user: ("User-"+id)
+    user: ("User-"+id),
+    compulsoryField: "123",
+    rows: 20
   };
 
-  setTimeout(() => res.json(invoice), 300);
+  if (id % 25 == 0) {
+    invoice.rows = 2000;
+  }
+
+  setTimeout(() => res.json(invoice), 750);
+  //res.send(invoice);
 });
 
 module.exports = router;
