@@ -5,6 +5,9 @@ var con = 1;
 // Get all payments, paginated max upto 10 pages 50 payments per page
 router.get('/', function(req, res, next) {
   let payments = [];
+  //console.log(req.headers);
+  let accessToken = req.headers['access_token'];
+  let refreshToken = req.headers['refresh_token'];
   let offset = parseInt(req.query.offset);
   console.log(offset);
   let pageSize = 1;
@@ -29,6 +32,9 @@ router.get('/', function(req, res, next) {
     payments,
     offset
   };
+  if (accessToken == 'failed-access') {
+    res.status(401);
+  }
   res.json(response);
 });
 

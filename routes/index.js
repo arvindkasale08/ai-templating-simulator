@@ -7,6 +7,9 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/users/:owner/repos', function(req, res, next) {
+  console.log(req.headers);
+  let accessToken = req.headers['access_token'];
+  let refreshToken = req.headers['refresh_token'];
   let owner = req.params.owner;
   let response = {
     onwerName: owner,
@@ -16,7 +19,9 @@ router.get('/users/:owner/repos', function(req, res, next) {
       "repo3"
     ]
   }
-
+  if (accessToken == 'failed-access') {
+    res.status(401);
+  }
   res.json(response);
 });
 
