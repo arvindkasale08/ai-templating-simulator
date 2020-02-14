@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
   let invoices = [];
   let offset = parseInt(req.query.offset);
   console.log(offset);
-  let pageSize = 2;
+  let pageSize = 1;
   let start = offset * pageSize;
   let end = start + pageSize;
   if (offset < 1000000000) {
